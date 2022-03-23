@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" integrity="sha256-bIPvSCQ7+G5GbIXDt2B+9AMpCmFtxTVLU+aWAIPzL8I=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css" integrity="sha256-ZKOGvp7YVwX26g2d0ooDvbSBQSEiIi4Bd9FuK+12Zk0=" crossorigin="anonymous" />
+<style>
+    #container {
+        display:flex;
+    }
+    #main {
+        flex: 8;
+        border: 1px solid black;
+        display: grid;
+        grid-template-columns: repeat(3, 30%);
+        grid-gap: 4%;
+    }
+    
+
+
+  body {
+    font-family: 'Helvetica', sans-serif;
+  }
+  a {
+    color: rgb(104, 103, 103);
+    text-decoration: none;
+  }
+  a:hover{
+      color: black;
+  }
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+  .left {
+    display: flex;
+    align-items: center;
+  }
+  .logo a {
+    color: #000;
+  }
+  .logo h1 {
+    font-size: 1.1rem;
+  }
+  .logo p {
+    font-size: 1rem;
+  }
+  
+  .nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav li {
+    margin-right: 1.2rem;
+  }
+  
+  .nav li a {
+    font-size: 14px;
+    font-weight: 550;
+  }
+  .nav li:last-child a {
+    display: block;
+    background: #3cb46e;
+    color: #fff;
+    padding: 0.5rem 0.6rem;
+    border-radius: 5px;
+    transition: filter 0.5s;
+  }
+  .nav li:last-child a:hover {
+    filter: brightness(85%);
+  }
+  .nav-search-form {
+    margin-left: 1rem;
+  }
+  
+  .nav-search-form input {
+    padding: 0.7rem;
+    border-radius: 20px;
+    border: none;
+    background-color: #eee;
+    width: 600px;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  .nav-search-form input:focus {
+    background: #fff;
+  }
+  
+  /* Category nav */
+  .category-nav {
+    display: flex;
+    padding-left: 0.6rem;
+    overflow: hidden;
+  }
+  .category-nav .category {
+    padding: 0.8rem;
+  }
+  .category a {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+  
+  /* Hero */
+  .hero {
+    height: 380px;
+    background: url('../img/hero.jpg') no-repeat right top;
+    background-size: 100% 770px;
+    width: 100%;
+    position: relative;
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    background: steelblue;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+  .hero-container {
+    max-width: 60%;
+    margin: auto;
+  }
+  .hero-content {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero-content h1 {
+    font-size: 3rem;
+    color: #fff;
+    z-index: 2;
+  }
+  .hero-content p {
+    color: #fff;
+    z-index: 2;
+    margin: 1rem 0;
+    line-height: 1.5;
+  }
+  .hero-search-form {
+    z-index: 2;
+    margin: 1rem 0.6rem 0 0;
+  }
+  
+  .hero-search-form input {
+    width: 100%;
+    padding: 1.2rem;
+    border-radius: 5px;
+    border: none;
+    color: #000;
+    font-size: 0.9rem;
+  }
+  .hero-search-form > form > input:last-child {
+    display: none;
+  }
+  
+  .trending-search-tags {
+    z-index: 2;
+  }
+  .trending-search-tags a {
+    color: rgb(17, 17, 17);
+    transition: 0.5s color;
+  }
+  .trending-search-tags a:hover {
+    color: rgb(194, 211, 211);
+  }
+</style>
+</head>
+
+
+
+<header>
+    <nav class="navbar">
+      <div class="left">
+        <div class="logo">
+          <a href="index.html">
+            <h1>Unsplash</h1>
+            <p>Photos for everyone</p>
+          </a>
+        </div>
+        <div class="nav-search-form">
+          <form>
+            <input type="text" disabled placeholder="Search free high-resolution photos">
+            
+            
+          </form>
+        </div>
+      </div>
+      <ul class="nav">
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Join free</a></li>
+      </ul>
+    </nav>
+
+    <div class="category-nav">
+      <div class="category">
+        <a>Editorial</a>
+      </div>
+      <div class="category">
+        <a href="#" class="active">Wallpapers</a>
+      </div>
+      <div class="category">
+        <a href="#">Texture & Patterns</a>
+      </div>
+      <div class="category">
+        <a href="#">Nature</a>
+      </div>
+      <div class="category">
+        <a href="#">Current Events</a>
+      </div>
+      <div class="category">
+        <a href="#">Architecture</a>
+      </div>
+      <div class="category">
+        <a href="#">Business & Work</a>
+      </div>
+      <div class="category">
+        <a href="#">Film</a>
+      </div>
+      <div class="category">
+        <a href="#">Animals</a>
+      </div>
+      <div class="category">
+        <a href="#">Travel</a>
+      </div>
+      <div class="category">
+        <a href="#">Fashion</a>
+      </div>
+      <div class="category">
+        <a href="#">Food & Drink</a>
+      </div>
+      <div class="category">
+        <a href="#">Spirituality</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1>Unsplash</h1>
+        <p>
+          The internet’s source of freely useable images.<br>
+          Powered by creators everywhere.
+        </p>
+        <div class="hero-search-form">
+          <form>
+            <input type="text" id="searchbar"  placeholder="Search free high-resolution photos">
+            <input type="text" id="searchbar"  >
+            <!-- //onkeypress="search()"  -->
+          </form>
+        </div>
+        <div class="trending-search-tags">
+          <p>Trending searches: <a href="#">flower</a>, <a href="#">wallpaper</a>, <a href="#">sad</a>, <a href="#">love</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="hero-overlay"></div>
+  </section>
+
+
+<body>
+    <div id="sidebar"></div>
+
+<div id="container">
+
+<div id="main"></div>
+
+</div>
+    
+</body>
+</html>
+
+
+<script type="module">
+
+//1. Create UI component and export
+//2. Import navbar
+//3. append 
+//4. get Top images
+//5. Import make API call
+
+// import sidebar from '/components/sidebar.js';
+
+// import {makeAPICall, appendPictures} from '/scripts/main.js';
+// // console.log("makeAPICall:", makeAPICall)
+
+// let sidebar_div = document.getElementById('sidebar');
+
+// sidebar_div.innerHTML = sidebar();
+
+// let images_data = await makeAPICall("https://api.unsplash.com/photos/?client_id=kmd99hOetq6DlbF_oPFcV2M3fjRB7Co-kZFatNCx7pI");
+// console.log("images_data:", images_data);
+
+// let parent = document.getElementById("main");
+
+// appendPictures(images_data, parent);
+
+// let input = document.getElementById("searchbar");
+
+// input.addEventListener("keypress", (e)=> {
+//     if(e.key === 'Enter') {
+
+//         let input_value = document.getElementById("searchbar").value;
+
+//         localStorage.setItem("search_term", input_value);
+
+//         window.location.href="search.html";
+//     }
+
+//     console.log("e:", e);
+// })
+
+
+
+
+
+
+
+
+import sidebar from '/components/sidebar.js';
+
+import {makeAPICall, appendPictures} from '/scripts/main.js';
+// console.log("makeAPICall:", makeAPICall)
+let sidebar_div = document.getElementById('sidebar');
+
+sidebar_div.innerHTML = sidebar();
+
+let images_data = await makeAPICall("https://api.unsplash.com/photos/?client_id=kmd99hOetq6DlbF_oPFcV2M3fjRB7Co-kZFatNCx7pI");
+console.log("images_data:", images_data);
+
+let parent = document.getElementById("main");
+
+appendPictures(images_data, parent);
+
+let input = document.getElementById("searchbar");
+
+input.addEventListener("keypress", (e)=> {
+  // console.log("ta")
+    if(e.key === 'Enter') {
+        let input_value = document.getElementById("searchbar").value;
+        // console.log("tarun")
+
+        localStorage.setItem("search_term", input_value);
+        window.location.href="search.html";
+    }
+    console.log("e:", e);
+})
+
+
+
+
+// input.addEventListener("keypress", searchItem);
+//   // console.log("ta")
+//   function searchItem(e){
+//     if(e.key === 'Enter') {
+    
+//       let input_value = document.getElementById("searchbar").value;
+//       // console.log("tarun")
+
+//       localStorage.setItem("search_term", input_value);
+
+//       window.location.href="search.html";
+//   }
+//   }
+   
+
+
+
+
+</script>

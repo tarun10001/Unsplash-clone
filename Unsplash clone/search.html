@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+         #main {
+        display: grid;
+        grid-template-columns: repeat(3, 30%);
+        grid-gap: 7%;
+    }
+
+    body {
+    font-family: 'Helvetica', sans-serif;
+  }
+  a {
+    color: rgb(104, 103, 103);
+    text-decoration: none;
+  }
+  a:hover{
+      color: black;
+  }
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+  .left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo a {
+    color: #000;
+  }
+  
+  .logo h1 {
+    font-size: 1.1rem;
+  }
+  
+  .logo p {
+    font-size: 1rem;
+  }
+  
+  .nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav li {
+    margin-right: 1.2rem;
+  }
+  
+  .nav li a {
+    font-size: 14px;
+    font-weight: 550;
+  }
+  
+  .nav li:last-child a {
+    display: block;
+    background: #3cb46e;
+    color: #fff;
+    padding: 0.5rem 0.6rem;
+    border-radius: 5px;
+    transition: filter 0.5s;
+  }
+  
+  .nav li:last-child a:hover {
+    filter: brightness(85%);
+  }
+  
+  .nav-search-form {
+    margin-left: 1rem;
+  }
+  
+  .nav-search-form input {
+    padding: 0.7rem;
+    border-radius: 20px;
+    border: none;
+    background-color: #eee;
+    width: 600px;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  .nav-search-form input:focus {
+    background: #fff;
+  }
+  
+  /* Category nav */
+  .category-nav {
+    display: flex;
+    padding-left: 0.6rem;
+    overflow: hidden;
+  }
+  
+  .category-nav .category {
+    padding: 0.8rem;
+  }
+  
+  .category a {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+    </style>
+</head>
+<body>
+
+
+    <header>
+        <nav class="navbar">
+          <div class="left">
+            <div class="logo">
+              <a href="index.html">
+                <h1>Unsplash</h1>
+                <p>Photos for everyone</p>
+              </a>
+            </div>
+            <div class="nav-search-form">
+              <form>
+                <input type="text" placeholder="Search free high-resolution photos">
+                
+                
+              </form>
+            </div>
+          </div>
+          <ul class="nav">
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Join free</a></li>
+          </ul>
+        </nav>
+    
+        <div class="category-nav">
+          <div class="category">
+            <a>Editorial</a>
+          </div>
+          <div class="category">
+            <a href="#" class="active">Wallpapers</a>
+          </div>
+          <div class="category">
+            <a href="#">Texture & Patterns</a>
+          </div>
+          <div class="category">
+            <a href="#">Nature</a>
+          </div>
+          <div class="category">
+            <a href="#">Current Events</a>
+          </div>
+          <div class="category">
+            <a href="#">Architecture</a>
+          </div>
+          <div class="category">
+            <a href="#">Business & Work</a>
+          </div>
+          <div class="category">
+            <a href="#">Film</a>
+          </div>
+          <div class="category">
+            <a href="#">Animals</a>
+          </div>
+          <div class="category">
+            <a href="#">Travel</a>
+          </div>
+          <div class="category">
+            <a href="#">Fashion</a>
+          </div>
+          <div class="category">
+            <a href="#">Food & Drink</a>
+          </div>
+          <div class="category">
+            <a href="#">Spirituality</a>
+          </div>
+        </div>
+      </header>
+    
+
+    <div id="main"></div>
+    
+</body>
+</html>
+
+
+<script type="module">
+
+import {makeAPICall, appendPictures} from "/scripts/main.js";
+
+//  `https://api.unsplash.com/search/photos?query=${city}&client_id=${api_key}`
+
+let search_term = localStorage.getItem('search_term');
+
+let res = await makeAPICall(`https://api.unsplash.com/search/photos?query=${search_term}&client_id=kmd99hOetq6DlbF_oPFcV2M3fjRB7Co-kZFatNCx7pI`);
+
+console.log("res:", res);
+
+let parent = document.getElementById("main");
+
+appendPictures(res.results, parent);
+
+
+</script>
